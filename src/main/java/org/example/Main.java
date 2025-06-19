@@ -1,5 +1,6 @@
 package org.example;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Main {
@@ -14,6 +15,7 @@ public class Main {
 
         // Instanciar Clases
         Scanner scanner = new Scanner(System.in);
+        DecimalFormat formatoMoneda = new DecimalFormat("#,##0.00");
 
         // Datos de Entrada
         int horasTrabajadasMes;
@@ -31,14 +33,13 @@ public class Main {
         final float PORCENTAJE_DEDUCCION = 0.08f;
 
         // Ingreso de Información
-
         System.out.print("\nIngrese el número de horas trabajadas en el mes: ");
         horasTrabajadasMes = scanner.nextInt();
 
-        System.out.print("\nIngrese el valor por hora: ");
+        System.out.print("Ingrese el valor por hora: ");
         valorHora = scanner.nextFloat();
 
-        System.out.print("\nIngrese los años laborados en la empresa: ");
+        System.out.print("Ingrese los años laborados en la empresa: ");
         anosLaborados = scanner.nextByte();
 
         // Proceso
@@ -47,13 +48,11 @@ public class Main {
         deduccion = salarioBruto * PORCENTAJE_DEDUCCION;
         salarioNeto = salarioBruto + bonificacion - deduccion;
 
-        // Datos a Mostrar
-
+        // Mostrar Resultados
         System.out.println("\n--- Resumen de Pago ---");
-        System.out.printf("Salario bruto mensual: $%.2f%n", salarioBruto);
-        System.out.printf("Bonificación por años: $%,d%n", bonificacion);
-        System.out.printf("Deducciones (8%%): $%.2f%n", deduccion);
-        System.out.printf("Salario neto mensual: $%.2f%n", salarioNeto);
-
+        System.out.println("Salario bruto mensual: $" + formatoMoneda.format(salarioBruto));
+        System.out.println("Bonificación por años: $" + formatoMoneda.format(bonificacion));
+        System.out.println("Deducciones (8%): $" + formatoMoneda.format(deduccion));
+        System.out.println("Salario neto mensual: $" + formatoMoneda.format(salarioNeto));
     }
 }
